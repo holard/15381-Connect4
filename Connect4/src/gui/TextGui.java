@@ -1,10 +1,13 @@
 package gui;
 
 import gameDefs.Board;
+import gameDefs.ConsoleHumanPlayer;
 import gameDefs.Game;
 
 import java.util.Scanner;
 
+import ai.GreedyAI;
+import ai.NeighborsHeuristic;
 import ai.RandomAI;
 
 public class TextGui {
@@ -13,8 +16,12 @@ public class TextGui {
 	{
 		Scanner scan = new Scanner(System.in);
 		Game g = new Game();
-		g.registerPlayer(new RandomAI(), 0);
-		g.registerPlayer(new RandomAI(), 1);
+		
+		// Set players here
+		// g.registerPlayer(new RandomAI(),0);
+		g.registerPlayer(new ConsoleHumanPlayer(), 0);
+		g.registerPlayer(new GreedyAI(new NeighborsHeuristic()), 1);
+		
 		while (true)
 		{
 			g.step();
@@ -44,10 +51,13 @@ public class TextGui {
 				}
 				System.out.println(s);
 			}
-			
-			if (g.gameStatus() > -1)
+			int gstat = g.gameStatus();
+			if (gstat > -1)
 			{
-				System.out.println("Player " + g.gameStatus() + " is the winner!");
+				if (gstat == 2)
+					System.out.println("The game ended in a draw!");
+				else
+					System.out.println("Player " + g.gameStatus() + " is the winner!");
 				g.startOver();
 			}
 			

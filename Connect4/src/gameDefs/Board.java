@@ -6,7 +6,9 @@ import java.util.List;
 /**
  * Represents the state of a Connect Four game.
  * The pieces are represented as integers (-1, 0, 1) where -1 corresponds
- * to an empty square.
+ * 		to an empty square.
+ * The board's underlying array is immutable, and makeMove generates a
+ * 		copy of the original, applies the move, then returns the result.
  */
 public class Board {
 	
@@ -41,6 +43,26 @@ public class Board {
 	}
 	
 	/**
+	 * A private copy constructor 
+	 * @param array
+	 */
+	private Board(int[][] array)
+	{
+		cols = 0;
+		rows = array.length;
+		if (rows > 0)
+			cols = array[0].length;
+		
+		pieces = new int[rows][cols];
+		if (pieces.length > 0)
+		{
+			for (int i = 0; i < pieces.length; i++)
+				for (int j = 0; j < pieces[0].length; j++)
+					pieces[i][j] = array[i][j];
+		}
+	}
+	
+	/**
 	 * Retrieves the piece at the given location.
 	 * @param row
 	 * @param col
@@ -63,26 +85,35 @@ public class Board {
 	}
 	
 	/**
-	 * DO NOT CALL THIS unless you are the Game object.
 	 * @param col
 	 * 		the column to play in
 	 * @param player
 	 * 		the player that is playing the move.
 	 * @return
-	 * 		Whether or not the move was legal.
+	 * 		The resulting (new) board, or null if illegal move.
 	 */
-	public boolean makeMove(int col, int player)
+	public Board makeMove(int col, int player)
 	{
 		if (!isEmpty(0,col))
-			return false;
+			return null;
 		
+		Board copy = new Board(pieces);
+		copy.addPiece(col,player);
+		return copy;
+	}
+	
+	/**
+	 * @param col
+	 * 		the column to play in
+	 * @param player
+	 * 		the player making the move
+	 */
+	private void addPiece(int col, int player)
+	{
 		int row = 0;
 		while (row < rows-1 && isEmpty(row+1,col))
 			row += 1;
-		
 		pieces[row][col] = player;
-		
-		return true;
 	}
 	
 	/**
@@ -136,6 +167,13 @@ public class Board {
 				}
 			}
 		}
+		boolean tied = true;
+		for (int i = 0; i < cols; i++)
+		{
+			tied = tied && (pieces[0][i] > -1);
+		}
+		if (tied)
+			return 2;
 		return -1;
 	}
 	

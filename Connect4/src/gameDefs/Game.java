@@ -61,11 +61,11 @@ public class Game {
 		if (turn == 0)
 		{
 			int move = p0.getMove(board, 0);
-			board.makeMove(move, 0);
+			board = board.makeMove(move, 0);
 		} else
 		{
 			int move = p1.getMove(board, 1);
-			board.makeMove(move, 1);
+			board = board.makeMove(move, 1);
 		}
 		
 		turn = 1-turn;
@@ -75,7 +75,7 @@ public class Game {
 	}
 	
 	/**
-	 * @return   -1 if the game is over, the player # otherwise.
+	 * @return   -1 if the game is over, the player # otherwise, or 2 for tie.
 	 */
 	public int gameStatus()
 	{

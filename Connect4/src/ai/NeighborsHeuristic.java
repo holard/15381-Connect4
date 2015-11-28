@@ -4,12 +4,16 @@ import gameDefs.Board;
 
 /**
  * Basic heuristic that computes the number of adjacencies among the player's
- * 		pieces.
+ * 		pieces. Always takes a winning move if it exists.
  */
 public class NeighborsHeuristic implements Heuristic {
 
 	@Override
 	public int evaluate(Board b, int player) {
+		int status = b.checkStatus();
+		// Winning configuration check!
+		if (status == player)
+			return 100000;
 		int sum = 0;
 		int rows = b.getRows();
 		int cols = b.getCols();

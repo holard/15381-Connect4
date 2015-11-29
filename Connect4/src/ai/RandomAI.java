@@ -17,5 +17,10 @@ public class RandomAI implements Player{
 		int col = rand.nextInt(possibleMoves.size());
 		return possibleMoves.get(col);
 	}
+
+	@Override
+	public String getName() {
+		return "Random AI Player";
+	}
 	
 }

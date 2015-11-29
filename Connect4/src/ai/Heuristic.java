@@ -11,4 +11,9 @@ public interface Heuristic {
 	 * @return		An integer denoting the value of this state.
 	 */
 	int evaluate(Board b, int player);
+	
+	/**
+	 * @return  The name of the heuristic
+	 */
+	String getName();
 }

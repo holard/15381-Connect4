@@ -3,6 +3,7 @@ package drivers;
 import ai.GreedyAI;
 import ai.NeighborsHeuristic;
 import ai.RandomAI;
+import ai.RandomizedGreedyAI;
 import gameDefs.Game;
 import gameDefs.Player;
 
@@ -15,7 +16,7 @@ public class BasicDriver {
 	public static void main(String[] args)
 	{
 		Player p0 = new GreedyAI(new NeighborsHeuristic());
-		Player p1 = new RandomAI();
+		Player p1 = new RandomizedGreedyAI(new NeighborsHeuristic());
 		int trials = 5000;
 		int p0_wins = 0;
 		int p1_wins = 0;
@@ -49,7 +50,7 @@ public class BasicDriver {
 		}
 		
 		System.out.println("Results:");
-		System.out.println("Player 0 won " + p0_wins + " times!");
-		System.out.println("Player 1 won " + p1_wins + " times!");
+		System.out.println("Player 0 [" + p0.getName() + "] won " + p0_wins + " times!");
+		System.out.println("Player 1 [" + p1.getName() + "] won " + p1_wins + " times!");
 	}
 }

@@ -28,4 +28,9 @@ public class ConsoleHumanPlayer implements Player {
 		}
 	}
 
+	@Override
+	public String getName() {
+		return "Console-based Human Player";
+	}
+
 }

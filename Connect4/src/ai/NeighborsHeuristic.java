@@ -14,6 +14,7 @@ public class NeighborsHeuristic implements Heuristic {
 		// Winning configuration check!
 		if (status == player)
 			return 100000;
+		
 		int sum = 0;
 		int rows = b.getRows();
 		int cols = b.getCols();
@@ -38,6 +39,12 @@ public class NeighborsHeuristic implements Heuristic {
 		}
 		
 		return sum;
+	}
+
+	@Override
+	public String getName() {
+		
+		return "Nieghbors Heuristic";
 	}
 
 }

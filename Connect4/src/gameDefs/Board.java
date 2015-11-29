@@ -103,6 +103,25 @@ public class Board {
 	}
 	
 	/**
+	 * Returns a list of Board objects that represent neighboring states
+	 * @param player
+	 * 		The player making the next move
+	 * @return		The list of neighbors
+	 */
+	public List<Board> neighbors(int player)
+	{
+		List<Board> ret = new ArrayList<Board>();
+		
+		List<Integer> moves = getLegalMoves();
+		for (int i : moves)
+		{
+			ret.add(makeMove(i,player));
+		}
+		
+		return ret;
+	}
+	
+	/**
 	 * @param col
 	 * 		the column to play in
 	 * @param player

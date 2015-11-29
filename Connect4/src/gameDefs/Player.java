@@ -12,4 +12,9 @@ public interface Player {
 	 * @return   the column to play in.
 	 */
 	int getMove(Board b, int color);
+	
+	/**
+	 * @return  the Player's name
+	 */
+	String getName();
 }

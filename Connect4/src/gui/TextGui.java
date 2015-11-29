@@ -6,9 +6,11 @@ import gameDefs.Game;
 
 import java.util.Scanner;
 
+import ai.CenterHeuristic;
 import ai.GreedyAI;
 import ai.NeighborsHeuristic;
 import ai.RandomAI;
+import ai.RandomizedGreedyAI;
 
 public class TextGui {
 	
@@ -18,9 +20,9 @@ public class TextGui {
 		Game g = new Game();
 		
 		// Set players here
-		// g.registerPlayer(new RandomAI(),0);
-		g.registerPlayer(new ConsoleHumanPlayer(), 0);
-		g.registerPlayer(new GreedyAI(new NeighborsHeuristic()), 1);
+		g.registerPlayer(new RandomAI(),0);
+		//g.registerPlayer(new ConsoleHumanPlayer(), 0);
+		g.registerPlayer(new RandomizedGreedyAI(new NeighborsHeuristic()), 1);
 		
 		while (true)
 		{

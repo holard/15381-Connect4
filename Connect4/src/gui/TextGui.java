@@ -7,10 +7,14 @@ import gameDefs.Game;
 import java.util.Scanner;
 
 import ai.CenterHeuristic;
+import ai.CompositeHeuristic;
 import ai.GreedyAI;
+import ai.Heuristic;
+import ai.MinimaxAI;
 import ai.NeighborsHeuristic;
 import ai.RandomAI;
 import ai.RandomizedGreedyAI;
+import ai.StackHeuristic;
 
 public class TextGui {
 	
@@ -20,9 +24,10 @@ public class TextGui {
 		Game g = new Game();
 		
 		// Set players here
-		g.registerPlayer(new RandomAI(),0);
-		//g.registerPlayer(new ConsoleHumanPlayer(), 0);
-		g.registerPlayer(new RandomizedGreedyAI(new NeighborsHeuristic()), 1);
+		Heuristic Comp = new CompositeHeuristic(new NeighborsHeuristic(),new CenterHeuristic());
+		//g.registerPlayer(new RandomAI(),0);
+		g.registerPlayer(new ConsoleHumanPlayer(), 0);
+		g.registerPlayer(new MinimaxAI(Comp,3), 1);
 		
 		while (true)
 		{

@@ -1,9 +1,14 @@
 package drivers;
 
+import ai.CenterHeuristic;
+import ai.CompositeHeuristic;
 import ai.GreedyAI;
+import ai.Heuristic;
+import ai.MinimaxAI;
 import ai.NeighborsHeuristic;
 import ai.RandomAI;
 import ai.RandomizedGreedyAI;
+import ai.SquaredLinesHeuristic;
 import gameDefs.Game;
 import gameDefs.Player;
 
@@ -15,9 +20,11 @@ public class BasicDriver {
 	
 	public static void main(String[] args)
 	{
-		Player p0 = new GreedyAI(new NeighborsHeuristic());
-		Player p1 = new RandomizedGreedyAI(new NeighborsHeuristic());
-		int trials = 5000;
+		Heuristic comp = new CompositeHeuristic(new NeighborsHeuristic(),new CenterHeuristic());
+		Heuristic comp2 = new CompositeHeuristic(new SquaredLinesHeuristic(), new CenterHeuristic());
+		Player p0 = new RandomizedGreedyAI(comp2);
+		Player p1 = new MinimaxAI(comp2,3);
+		int trials = 100;
 		int p0_wins = 0;
 		int p1_wins = 0;
 		Game g = new Game(p0,p1);

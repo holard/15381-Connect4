@@ -5,10 +5,9 @@ import java.util.List;
 import gameDefs.Board;
 
 /**
- * Basic heuristic that computes the number of adjacencies among the player's
- * 		pieces. Always takes a winning move if it exists.
+ * Basic heuristic that computes the sume of line-lengths (roughly squared).
  */
-public class NeighborsHeuristic implements Heuristic {
+public class SquaredLinesHeuristic implements Heuristic {
 
 	@Override
 	public int evaluate(Board b, int player) {
@@ -26,6 +25,7 @@ public class NeighborsHeuristic implements Heuristic {
 		int sum = 0;
 		int rows = b.getRows();
 		int cols = b.getCols();
+
 		for (int row = 0; row < rows; row++)
 		{
 			for (int col = 0; col < cols; col++)
@@ -36,11 +36,15 @@ public class NeighborsHeuristic implements Heuristic {
 					int[][] vec = {{0,1},{1,0},{1,1},{-1,1}};
 					for (int[] vector : vec)
 					{
-						int r = row + vector[0];
-						int c = col + vector[1];
-						if (r >= 0 && r < rows && c >= 0 && c < cols &&
+						int r = row;
+						int c = col;
+						while (r >= 0 && r < rows && c >= 0 && c < cols &&
 								b.getPiece(r,c) == player)
+						{
 							sum += 1;
+							r = r + vector[0];
+							c = c + vector[1];
+						}
 					}
 				}
 			}
@@ -52,7 +56,7 @@ public class NeighborsHeuristic implements Heuristic {
 	@Override
 	public String getName() {
 		
-		return "Neighbors Heuristic";
+		return "Squared Lines Heuristic";
 	}
 
 }

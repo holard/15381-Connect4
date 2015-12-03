@@ -23,6 +23,7 @@ public class ConsoleHumanPlayer implements Player {
 			} catch (InputMismatchException e) {
 				System.out.println("Please enter a valid integer 0 ~ " + cols
 						+ " for player " + color + ": ");
+				scan.nextLine();
 				continue;
 			}
 		}

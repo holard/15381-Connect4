@@ -16,7 +16,7 @@ public class Board {
 	 * Default dimensions of the board
 	 */
 	public static final int DEFAULT_WIDTH = 7;
-	public static final int DEFAULT_HEIGHT = 7;
+	public static final int DEFAULT_HEIGHT = 6;
 	
 	private int rows;
 	private int cols;

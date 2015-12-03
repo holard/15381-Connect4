@@ -63,6 +63,7 @@ public class TextGui {
 				g.startOver();
 			}
 			
+			// comment next line out if we have a human player
 			String in = scan.nextLine();
 		}
 	}

@@ -4,6 +4,8 @@ import ai.CenterHeuristic;
 import ai.CompositeHeuristic;
 import ai.GreedyAI;
 import ai.Heuristic;
+import ai.LearningAI;
+import ai.LearningBoardAI;
 import ai.MinimaxAI;
 import ai.NeighborsHeuristic;
 import ai.RandomAI;
@@ -22,9 +24,10 @@ public class BasicDriver {
 	{
 		Heuristic comp = new CompositeHeuristic(new NeighborsHeuristic(),new CenterHeuristic());
 		Heuristic comp2 = new CompositeHeuristic(new SquaredLinesHeuristic(), new CenterHeuristic());
-		Player p0 = new RandomizedGreedyAI(comp2);
-		Player p1 = new MinimaxAI(comp2,3);
-		int trials = 100;
+		Player p0 = new MinimaxAI(comp2, 2);
+		Player p1 = new LearningBoardAI(comp2, 2);
+		//Player p1 = new LearningAI(new SquaredLinesHeuristic(), new CenterHeuristic(), 2);
+		int trials = 50;
 		int p0_wins = 0;
 		int p1_wins = 0;
 		Game g = new Game(p0,p1);

@@ -3,6 +3,8 @@ package gameDefs;
 import java.util.ArrayList;
 import java.util.List;
 
+import ai.Pair;
+
 /**
  * Represents the state of a Connect Four game.
  * The pieces are represented as integers (-1, 0, 1) where -1 corresponds
@@ -203,5 +205,34 @@ public class Board {
 	public int getRows()
 	{
 		return rows;
+	}
+	
+	@Override
+	public int hashCode() {
+		int sum = 0;
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				sum += pieces[i][j] + 1;
+				sum *= 3;
+				sum %= 500000000;
+			}
+		}
+		
+		return sum;
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof Board)) {
+			return false;
+		}
+		Board oth = (Board) other;
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				if (pieces[i][j] != oth.pieces[i][j])
+					return false;
+			}
+		}
+		return true;
 	}
 }

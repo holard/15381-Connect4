@@ -23,4 +23,8 @@ public class RandomAI implements Player{
 		return "Random AI Player";
 	}
 	
+	@Override
+	public void gameOver(int status) {
+		return;
+	}
 }

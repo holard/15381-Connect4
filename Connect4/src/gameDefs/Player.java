@@ -12,7 +12,7 @@ public interface Player {
 	 * @return   the column to play in.
 	 */
 	int getMove(Board b, int color);
-	
+	void gameOver(int status);
 	/**
 	 * @return  the Player's name
 	 */

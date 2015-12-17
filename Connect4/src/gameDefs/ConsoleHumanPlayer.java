@@ -34,4 +34,9 @@ public class ConsoleHumanPlayer implements Player {
 		return "Console-based Human Player";
 	}
 
+	@Override
+	public void gameOver(int status) {
+		return;
+	}
+
 }

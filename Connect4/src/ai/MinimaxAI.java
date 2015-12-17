@@ -72,6 +72,10 @@ public class MinimaxAI implements Player{
 	@Override
 	public int getMove(Board b, int color) {
 		List<Integer> moves = b.getLegalMoves();
+		return getMoveFromList(b, color, moves);
+	}
+	
+	public int getMoveFromList(Board b, int color, List<Integer> moves) {
 		List<Integer> bestmoves = new ArrayList<Integer>();
 		int best = -1;
 		for (Integer i : moves)
@@ -100,10 +104,15 @@ public class MinimaxAI implements Player{
 		//System.out.println("best I can do is " + best);
 		return bestmove;
 	}
-
+	
 	@Override
 	public String getName() {
 		return "Randomized Minimax AI Player using the " + heuristic.getName();
+	}
+	
+	@Override
+	public void gameOver(int status) {
+		return;
 	}
 
 }

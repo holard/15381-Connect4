@@ -59,4 +59,11 @@ public class GuiHumanPlayer implements Player {
 		return "Gui-based Human Player";
 	}
 
+
+	@Override
+	public void gameOver(int status) {
+		// TODO Auto-generated method stub
+		return;
+	}
+
 }

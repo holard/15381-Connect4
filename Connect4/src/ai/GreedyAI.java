@@ -49,5 +49,9 @@ public class GreedyAI implements Player{
 	public String getName() {
 		return "Greedy AI Player using the " + heuristic.getName();
 	}
-
+	
+	@Override
+	public void gameOver(int status) {
+		return;
+	}
 }

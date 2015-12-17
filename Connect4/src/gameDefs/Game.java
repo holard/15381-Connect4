@@ -55,8 +55,9 @@ public class Game {
 	 */
 	public void step()
 	{
-		if (status > -1)
+		if (status > -1) 
 			return;
+		
 		
 		if (turn == 0)
 		{
@@ -84,6 +85,10 @@ public class Game {
 	
 	public void startOver()
 	{
+		if (p0 != null)
+			p0.gameOver(status);
+		if (p1 != null)
+			p1.gameOver(status);
 		board = new Board();
 		turn = 0;
 		status = -1;

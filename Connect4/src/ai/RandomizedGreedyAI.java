@@ -56,5 +56,10 @@ public class RandomizedGreedyAI implements Player{
 	public String getName() {
 		return "Randomized Greedy AI Player using the " + heuristic.getName();
 	}
+	
+	@Override
+	public void gameOver(int status) {
+		return;
+	}
 
 }

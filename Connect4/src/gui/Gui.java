@@ -6,9 +6,13 @@ import gameDefs.Game;
 
 import java.util.Scanner;
 
+import ai.CenterHeuristic;
+import ai.LearningAI;
+import ai.MinimaxAI;
 import ai.NeighborsHeuristic;
 import ai.RandomAI;
 import ai.RandomizedGreedyAI;
+import ai.SquaredLinesHeuristic;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -53,7 +57,7 @@ public class Gui {
 		// Set players here
 		//g.registerPlayer(new RandomAI(),0);
 		g.registerPlayer(new GuiHumanPlayer(), 0);
-		g.registerPlayer(new RandomizedGreedyAI(new NeighborsHeuristic()), 1);
+		g.registerPlayer(new LearningAI(new SquaredLinesHeuristic(), new CenterHeuristic(), 3), 1);
 		
 		// Set to 1 if we have any human players, 0 otherwise
 		HUMAN = 1;
